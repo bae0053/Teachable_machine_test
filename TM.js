@@ -4,7 +4,7 @@
 // the link to your model provided by Teachable Machine export panel
 // 모델이 업로드돼있는 URL
 //const URL = "https://teachablemachine.withgoogle.com/models/uihKvlGFe/";
-const URL = "./tm-my-image-model/";
+const URL = "/tree/master/tm-my-image-model/";
 import { getAudioUrl } from './node_modules/google-tts-api';
 
 let model, webcam, labelContainer, maxPredictions;
