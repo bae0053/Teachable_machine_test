@@ -5,7 +5,7 @@
 // 모델이 업로드돼있는 URL
 //const URL = "https://teachablemachine.withgoogle.com/models/uihKvlGFe/";
 const URL = "./tm-my-image-model/";
-import { getAudioUrl } from './node_modules/google-tts-api';
+import * as googleTTS from './node_modules/google-tts-api';
 
 let model, webcam, labelContainer, maxPredictions;
 
@@ -93,7 +93,7 @@ window.speechSynthesis.speak(utterThis);
 
 function googleSpeech(txt) {
     // get audio URL
-    const speechUrl = getAudioUrl(txt, {
+    const speechUrl = googleTTS.getAudioUrl(txt, {
     lang: 'ko-KR',
     slow: false,
     host: 'https://translate.google.com',
