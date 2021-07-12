@@ -93,10 +93,10 @@ window.speechSynthesis.speak(utterThis);
 
 function googleSpeech(txt) {
     // get audio URL
-    const speechUrl = googleTTS.getAllAudioUrls(txt, {
+    const speechUrl = googleTTS.getAudioUrl(txt, {
     lang: 'ko-KR',
     slow: false,
-    host: 'https://translate.google.com',
+    host: 'https://translate.google.com'
     });
     console.log(speechUrl);
 }
