@@ -5,7 +5,7 @@
 // 모델이 업로드돼있는 URL
 //const URL = "https://teachablemachine.withgoogle.com/models/uihKvlGFe/";
 const URL = "./tm-my-image-model/";
-import * as googleTTS from './node_modules/google-tts-api/dist';
+import * as googleTTS from './node_modules/google-tts-api';
 
 let model, webcam, labelContainer, maxPredictions;
 
@@ -59,7 +59,7 @@ $(document).ready(function(){
     window.speechSynthesis.onvoiceschanged = setVoiceList;
     }
 
-
+    document.querySelector('button').addEventListener("click", init);
 });
 
 function setVoiceList() {
