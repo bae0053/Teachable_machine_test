@@ -52,6 +52,7 @@
                   for (let i = 0; i < maxPredictions; i++) { // and class labels
                       labelContainer.appendChild(document.createElement("div"));
                   }
+                  TTSinit();
               }
 
               async function loop() {
@@ -107,7 +108,6 @@
               async function predict() {
                   // predict can take in an image, video or canvas html element
                   const prediction = await model.predict(webcam.canvas);
-                  console.log(prediction);
                   if (cnt > 100) {
                       cnt = 0;
                       if (prediction[0].probability > 0.5) {
@@ -165,8 +165,8 @@
                   window.AppTTS.Speak(txt);
               }
 
-              function toast(txt) {
-                window.AppTTS.toast(txt);
+              function TTSinit() {
+                window.AppTTS.initTTS();
               }
             </script>
     </body>
