@@ -114,6 +114,7 @@
                           console.log(prediction[0].className);
                           //speech(prediction[0].className);
                           SpeakTTS(prediction[0].className);
+                          toast(prediction[0].className);
                       } else if (prediction[1].probability > 0.5) {
                           console.log(prediction[1].className);
                           //speech(prediction[1].className);
@@ -163,6 +164,10 @@
 
               function SpeakTTS(txt) {
                   window.AppTTS.Speak(txt);
+              }
+
+              function toast(txt) {
+                window.AppTTS.toast(txt);
               }
             </script>
     </body>
