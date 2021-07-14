@@ -48,17 +48,17 @@ async function loop() {
     window.requestAnimationFrame(loop);
 }
 
-    function SpeakTTS(txt) {
+function SpeakTTS(txt) {
     window.AppTTS.Speak(txt);
 }
 
 function TTSinit() {
-window.AppTTS.initTTS();
+    window.AppTTS.initTTS();
 }
     
 
 $(document).ready(function(){
-init();
+    init();
 });
 
 
