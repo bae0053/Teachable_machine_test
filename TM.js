@@ -30,7 +30,7 @@ async function init() {
     // 후면카메라 작동을 위해 facingMode의 exact속성을 environment로 준다
     await webcam.setup({ facingMode: { exact: "environment" }}); // request access to the webcam
     await webcam.play();
-
+    SpeakTTS("상품 인식을 시작합니다.");
     window.requestAnimationFrame(loop);
 
     // append elements to the DOM
