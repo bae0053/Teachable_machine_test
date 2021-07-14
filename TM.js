@@ -25,7 +25,7 @@ async function init() {
 
     // Convenience function to setup a webcam
     const flip = false; // whether to flip the webcam (좌우반전 여부)
-    webcam = new tmImage.Webcam(360, 640, flip); // width, height, flip
+    webcam = new tmImage.Webcam(640, 360, flip); // width, height, flip
 
     // 후면카메라 작동을 위해 facingMode의 exact속성을 environment로 준다
     await webcam.setup({ facingMode: { exact: "environment" }}); // request access to the webcam
