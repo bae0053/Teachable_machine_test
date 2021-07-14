@@ -27,9 +27,6 @@
                     const flip = false; // whether to flip the webcam (좌우반전 여부)
                     webcam = new tmImage.Webcam(360, 640, flip); // width, height, flip
 
-                    console.log(webcam);
-                    console.log(window);
-
                     // 후면카메라 작동을 위해 facingMode의 exact속성을 environment로 준다
                     await webcam.setup({ facingMode: { exact: "environment" }}); // request access to the webcam
                     await webcam.play();
@@ -63,41 +60,41 @@
               async function predict() {
                   // predict can take in an image, video or canvas html element
                   const prediction = await model.predict(webcam.canvas);
-                  if (cnt > 100) {
+                  if (cnt > 20) {
                       cnt = 0;
-                      if (prediction[0].probability > 0.5) {
+                      if (prediction[0].probability > 0.8) {
                           console.log(prediction[0].className);
                           //speech(prediction[0].className);
                           SpeakTTS(prediction[0].className);
-                      } else if (prediction[1].probability > 0.5) {
+                      } else if (prediction[1].probability > 0.8) {
                           console.log(prediction[1].className);
                           //speech(prediction[1].className);
                           SpeakTTS(prediction[1].className);
-                      } else if (prediction[2].probability > 0.5) {
+                      } else if (prediction[2].probability > 0.8) {
                           console.log(prediction[2].className);
                           //speech(prediction[2].className);
                           SpeakTTS(prediction[2].className);
-                      } else if (prediction[3].probability > 0.5){
+                      } else if (prediction[3].probability > 0.8){
                           console.log(prediction[3].className);
                           //speech(prediction[3].className);
                           SpeakTTS(prediction[3].className);
-                      } else if (prediction[4].probability > 0.5){
+                      } else if (prediction[4].probability > 0.8){
                           console.log(prediction[4].className);
                           //speech(prediction[4].className);
                           SpeakTTS(prediction[4].className);
-                      } else if (prediction[5].probability > 0.5){
+                      } else if (prediction[5].probability > 0.8){
                           console.log(prediction[5].className);
                           //speech(prediction[5].className);
                           SpeakTTS(prediction[5].className);
-                      } else if (prediction[6].probability > 0.5){
+                      } else if (prediction[6].probability > 0.8){
                           console.log(prediction[6].className);
                           //speech(prediction[6].className);
                           SpeakTTS(prediction[6].className);
-                      } else if (prediction[7].probability > 0.5){
+                      } else if (prediction[7].probability > 0.8){
                           console.log(prediction[7].className);
                           //speech(prediction[7].className);
                           SpeakTTS(prediction[7].className);
-                      } else if (prediction[8].probability > 0.5){
+                      } else if (prediction[8].probability > 0.8){
                           console.log(prediction[8].className);
                           //speech(prediction[8].className);
                           SpeakTTS(prediction[8].className);
