@@ -98,8 +98,11 @@ async function predict() {
         } else if (prediction[9].probability > 0.8){
             console.log(prediction[9].className);
             SpeakTTS(prediction[9].className);
+        } else if (prediction[10].probability > 0.8){
+            console.log(prediction[10].className);
+            SpeakTTS(prediction[10].className);
         } else {
-        SpeakTTS("상품 인식에 실패했습니다.");
+            SpeakTTS("상품 인식에 실패했습니다.");
         }
     } else {
         cnt++;
