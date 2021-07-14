@@ -11,36 +11,38 @@
 
               // Load the image model and setup the webcam
               async function init() {
-                TTSinit();
-                const modelURL = URL + "model.json";
-                const metadataURL = URL + "metadata.json";
+                    // TTS 객체 초기화
+                    TTSinit();
+                    const modelURL = URL + "model.json";
+                    const metadataURL = URL + "metadata.json";
 
-                // load the model and metadata
-                // Refer to tmImage.loadFromFiles() in the API to support files from a file picker
-                // or files from your local hard drive
-                // Note: the pose library adds "tmImage" object to your window (window.tmImage)
-                model = await tmImage.load(modelURL, metadataURL);
-                maxPredictions = model.getTotalClasses();
+                    // load the model and metadata
+                    // Refer to tmImage.loadFromFiles() in the API to support files from a file picker
+                    // or files from your local hard drive
+                    // Note: the pose library adds "tmImage" object to your window (window.tmImage)
+                    model = await tmImage.load(modelURL, metadataURL);
+                    maxPredictions = model.getTotalClasses();
 
-                // Convenience function to setup a webcam
-                const flip = false; // whether to flip the webcam
-                webcam = new tmImage.Webcam(200, 200, flip); // width, height, flip
+                    // Convenience function to setup a webcam
+                    const flip = false; // whether to flip the webcam (좌우반전 여부)
+                    webcam = new tmImage.Webcam(360, 640, flip); // width, height, flip
 
-                console.log(webcam);
-                console.log(window);
+                    console.log(webcam);
+                    console.log(window);
 
-                await webcam.setup({ facingMode: { exact: "environment" }}); // request access to the webcam
-                await webcam.play();
+                    // 후면카메라 작동을 위해 facingMode의 exact속성을 environment로 준다
+                    await webcam.setup({ facingMode: { exact: "environment" }}); // request access to the webcam
+                    await webcam.play();
 
-                // 
-                window.requestAnimationFrame(loop);
+                    // 
+                    window.requestAnimationFrame(loop);
 
-                // append elements to the DOM
-                document.getElementById("webcam-container").appendChild(webcam.canvas);
-                labelContainer = document.getElementById("label-container");
-                for (let i = 0; i < maxPredictions; i++) { // and class labels
-                    labelContainer.appendChild(document.createElement("div"));
-                }
+                    // append elements to the DOM
+                    document.getElementById("webcam-container").appendChild(webcam.canvas);
+                    labelContainer = document.getElementById("label-container");
+                    for (let i = 0; i < maxPredictions; i++) { // and class labels
+                        labelContainer.appendChild(document.createElement("div"));
+                    }
 
               }
 
@@ -53,44 +55,8 @@
               
 
               $(document).ready(function(){
-                  let voices = [];
-
-                  setVoiceList();
-
-                  if (window.speechSynthesis.onvoiceschanged !== undefined) {
-                  window.speechSynthesis.onvoiceschanged = setVoiceList;
-                  }
-
-
+                init();
               });
-
-              function setVoiceList() {
-                  voices = window.speechSynthesis.getVoices();
-              }
-
-              function speech(txt) {
-              if(!window.speechSynthesis) {
-                  alert("음성 재생을 지원하지 않는 브라우저입니다. 크롬, 파이어폭스 등의 최신 브라우저를 이용하세요");
-              return;
-              }
-              let lang = 'ko-KR';
-              let utterThis = new SpeechSynthesisUtterance(txt);
-              let voiceFound = false;
-              for(let i = 0; i < voices.length ; i++) {
-                  if(voices[i].lang.indexOf(lang) >= 0 || voices[i].lang.indexOf(lang.replace('-', '_')) >= 0) {
-                  utterThis.voice = voices[i];
-                  voiceFound = true;
-                  }
-              }
-              if(!voiceFound) {
-              alert('voice not found');
-              return;
-              }
-              utterThis.lang = lang;
-              utterThis.pitch = 1;
-              utterThis.rate = 1; //속도
-              window.speechSynthesis.speak(utterThis);
-              }
 
 
               // run the webcam image through the image model
@@ -143,11 +109,11 @@
                   } else {
                       cnt++;
                   }
-                  for (let i = 0; i < maxPredictions; i++) {
-                      const classPrediction =
-                          prediction[i].className + ": " + prediction[i].probability.toFixed(2);
-                      labelContainer.childNodes[i].innerHTML = classPrediction;
-                  }
+                //   for (let i = 0; i < maxPredictions; i++) {
+                //       const classPrediction =
+                //           prediction[i].className + ": " + prediction[i].probability.toFixed(2);
+                //       labelContainer.childNodes[i].innerHTML = classPrediction;
+                //   }
               }
 
               function SpeakTTS(txt) {
